@@ -1,0 +1,85 @@
+{% extends 'mainApp/base.html' %}
+{% block body %}
+    <div class="container-fluid display-screen">
+        <h3><strong>All Test Parameters</strong></h3>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Added On</th>
+                    <th>Added By</th>
+                    <th>Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tp in all_parameters %}
+
+
+                    <tr>
+                        <td>
+                            <a href="{% url 'mainapp:parameter-detail' tp.id %}">
+                                {{ tp.parameter_name }}
+                            </a>
+                        </td>
+                        <td>{{ tp.description }}</td>
+
+                        <td>
+                            {{ tp.added_on }}
+                        </td>
+                        <td>{{ tp.added_by }}</td>
+                        <td>
+                            <a href="{% url 'mainapp:parameter-update' tp.id %}" class="btn btn-primary">Edit</a>
+                            <a class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="display-print">
+    <h3><strong>All Users</strong></h3>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Lab</th>
+                    <th>Number of Datapoints</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in all_users %}
+
+                    <tr>
+
+                        <td>
+
+                            {% if  user.first_name and user.last_name %}
+                                {{ user.first_name }} {{ user.last_name }}
+                            {% else %}
+                                {{ user.username }}
+                            {% endif %}
+                        </td>
+                        <td>{{ user.email }}</td>
+
+                        <td>
+                            {{ user.userprofile.lab }}
+                        </td>
+                        <td>{{ user.datapoint_set.count }}</td>
+
+                    </tr>
+
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+{% endblock %}
