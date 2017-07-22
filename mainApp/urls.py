@@ -21,6 +21,11 @@ urlpatterns = [
     url(r'^parameters/(?P<pk>[0-9]+)/$', data_views.TestParameterDetail.as_view(), name="parameter-detail"),
     url(r'^parameters/(?P<pk>[0-9]+)/update$', data_views.TestParameterUpdate.as_view(), name="parameter-update"),
 
+    #url(r'^testdata/$', data_views.TestDataList.as_view(), name="testdata"),
+    url(r'^testdata/add/$', data_views.TestDataAdd.as_view(), name="testdata-add"),
+    url(r'^testdata/(?P<pk>[0-9]+)/$', data_views.TestDataDetail.as_view(), name="testdata-detail"),
+    url(r'^testdata/(?P<pk>[0-9]+)/update/$', data_views.TestDataUpdate.as_view(), name="testdata-update"),
+
 
 
 

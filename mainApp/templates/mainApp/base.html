@@ -75,7 +75,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- url 'music:index' -->
-                <a class="navbar-brand" href="{% url 'mainapp:home' %}">Lipid Project</a>
+                <a class="navbar-brand" href="{% url 'mainapp:home' %}">Home</a>
             </div>
             <!--Items-->
             <div class="collapse navbar-collapse" id="topNavBar">
@@ -84,6 +84,11 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Data
                             <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">All Data</a> </li>
+                            <li><a href="{% url 'mainapp:testdata-add' %}">Add New Test Data</a></li>
+
+                        </ul>
 
                     </li>
                     {% if request.user.groups.all.0|stringformat:"s" == "admin" %}
@@ -93,7 +98,7 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#">Test Parameters
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">All Paremeters</a></li>
+                                <li><a href="{% url 'mainapp:parameters' %}">All Paremeters</a></li>
                                 <li><a href="{% url 'mainapp:parameter-add' %}">Add New Parameter</a></li>
 
                             </ul>

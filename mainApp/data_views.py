@@ -84,6 +84,27 @@ class HomeView(LoginRequired,View):
         # return render(request, self.template_name, {'datapoints':datapoints,'search_form':search_form,'district_list':district_list,
         #                                           'labs':labs,'users':users})
 
+class TestDataAdd(LoginRequired, generic.CreateView):
+    model = TestData
+    fields = ['test_parameter', 'lot_number', 'control_level', 'control_data','remarks']
+
+    def form_valid(self, form):
+        data = form.save()
+        data.added_by = self.request.user
+        data.lab = self.request.user.userprofile.lab
+        data.district = self.request.user.userprofile.lab.district
+        data.save()
+        return HttpResponseRedirect(reverse('mainapp:testdata-detail', kwargs={'pk': data.pk}))
+
+class TestDataDetail(IsAdmin, LoginRequired, generic.DetailView):
+    model = TestData
+    template_name = 'mainApp/testdata_detail.html'
+
+
+class TestDataUpdate(IsAdmin, LoginRequired, generic.UpdateView):
+    model = TestData
+    fields = ['control_data','remarks']
+
 class TestParameterAdd(IsAdmin, LoginRequired, generic.CreateView):
     model = TestParameter
     fields = ['parameter_name', 'description']

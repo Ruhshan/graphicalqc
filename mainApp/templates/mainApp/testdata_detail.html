@@ -1,0 +1,151 @@
+{% extends 'mainApp/base.html' %}
+{% block title %}{{ object }}'s Detail{% endblock %}
+
+{% load static %}
+{% block extra_head %}
+    {% include 'mainApp/kendo_scripts.html' %}
+{% endblock %}
+{% block body %}
+    <div class="container-fluid display-screen">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3><strong>{{ object }}'s Detail</strong></h3>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>Parameter Name:</strong>
+                    </div>
+                    <div class="col-sm-5">
+                        {{ object.test_parameter }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>Lot Number:</strong>
+                    </div>
+                    <div class="col-sm-5">
+                        {{ object.lot_number }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>Control Level:</strong>
+                    </div>
+                    <div class="col-sm-5">
+                        {{ object.control_level }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>Control Data:</strong>
+                    </div>
+                    <div class="col-sm-5">
+                        {{ object.control_data }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>Added By:</strong>
+                    </div>
+                    <div class="col-sm-5">
+                        {{ object.added_by }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-2">
+                        <strong>Added At:</strong>
+                    </div>
+                    <div class="col-sm-5">
+                        {{ object.added_at }}
+                    </div>
+                </div>
+
+
+
+            <div class="panel-footer">
+                <a href="#" class="btn btn-primary">Edit</a>
+                <a class="btn btn-danger">Delete</a>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid display-screen">
+
+
+
+    {% include 'mainApp/kendo_components.html' %}
+
+    </div>
+    <div class="display-print">
+        <h3><strong>{{ user }}'s Information</strong></h3>
+        <table>
+            <tbody>
+            <tr>
+                <td>User Name:</td>
+                <td>{{ user }}</td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Email:</strong>
+                </td>
+                <td>
+                    {{ user.email }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Designation:</strong>
+                </td>
+                <td>
+                    {{ user.userprofile.designation }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Lab:</strong>
+                </td>
+                <td>
+                    {{ user.userprofile.lab }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Created On:</strong>
+                </td>
+                <td>
+                    {{ user.userprofile.created }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Last Update:</strong>
+                </td>
+                <td>
+                    {{ user.userprofile.last_updated }}
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <strong>Number of Datapoints:</strong>
+                </td>
+                <td>
+                    {{ user.datapoint_set.count }}
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    <table class="table table-bordered">
+
+            <thead>
+            <tr>
+
+            </tr>
+            </thead>
+            <tbody>
+
+
+
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

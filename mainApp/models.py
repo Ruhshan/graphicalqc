@@ -61,25 +61,26 @@ class TestParameter(models.Model):
         return reverse('mainapp:parameter-detail', kwargs={'pk': self.pk})
 
 
-class QCData(models.Model):
+class TestData(models.Model):
     level_choices=(('1','1'),
                     ('2','2'),
                     ('3','3'))
-    test_name = models.ForeignKey(TestParameter, on_delete=models.CASCADE)
-    level = models.CharField(max_length=10, choices=level_choices)
-    value = models.IntegerField()
+    test_parameter = models.ForeignKey(TestParameter, on_delete=models.CASCADE)
+    lot_number = models.CharField(max_length=20)
+    control_level = models.CharField(max_length=10, choices=level_choices)
+    control_data = models.IntegerField()
     remarks = models.CharField(max_length=50)
     added_by = models.ForeignKey(User,on_delete=models.CASCADE,null=True, blank=True)
     lab = models.ForeignKey(Lab, on_delete=models.CASCADE, null=True, blank=True)
-    district = models.CharField(max_length=50,null=True, blank=True)
-    created = models.DateField(auto_now_add=True)
-    last_updated = models.DateField(auto_now=True)
+    district = models.CharField(max_length=50, null=True, blank=True)
+    added_at = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return str(self.test_name)+str(self.id)
+        return (self.test_parameter.parameter_name)+'_'+str(self.id)
 
     def get_absolute_url(self):
-        return reverse('mainapp:data-qc-detail', kwargs={'pk': self.pk})
+        return reverse('mainapp:testdata-detail', kwargs={'pk': self.pk})
 
 
 
