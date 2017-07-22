@@ -1,1 +1,1 @@
-web: gunicorn IcddrbProject.wsgi --log-file -
+web: gunicorn bornieproject.wsgi --log-file -
